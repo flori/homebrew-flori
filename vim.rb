@@ -1,18 +1,17 @@
 class Vim < Formula
   desc "Vi 'workalike' with many additional features"
   homepage "https://www.vim.org/"
-  # vim should only be updated every 50 releases on multiples of 50
-  url "https://github.com/vim/vim/archive/v8.2.2200.tar.gz"
-  sha256 "bb2025a2d8e271be0c73483d754272b86a95261090a5e9c2e27c1f6ca8ea3c9c"
+  # vim should only be updated every 25 releases on multiples of 25
+  url "https://github.com/vim/vim/archive/v8.2.2400.tar.gz"
+  sha256 "d24d3b7b3bc41e28a3b83985d45c15cf55607467879b460ead10b3497cbf9a3e"
   license "Vim"
-  revision 2
   head "https://github.com/vim/vim.git"
 
   bottle do
-    sha256 "a1c7b28e906feaf0a2363084b92e59f8bc04632bd29251466f74a82bed86d139" => :big_sur
-    sha256 "b07787b28b8fd229995e064eba2570a25b847f667ac5d82d5fe0b0180e74726a" => :arm64_big_sur
-    sha256 "563a8aa0e8d7feb3813becde9041c22cc82f227c72b9d6c62bc81027a25d342b" => :catalina
-    sha256 "99a24866affa69c2e69622009f9ebb4885b15c36999eee9465e71dc6be63f28a" => :mojave
+    sha256 "46a647d7ce53d812439e875e1f3b0e2f3d17fdf87de53015ca0e3dc0df3b8bcf" => :big_sur
+    sha256 "a3dd6b6a823f91d43c5fd5ff5f9e1464f07e54606680eb05f11a9801b058aa1a" => :arm64_big_sur
+    sha256 "ac0d1a18942ee8bf4f3a71753df1f40772e661cc92f02d0d88966f69628bee3c" => :catalina
+    sha256 "0b00aac4f65ecdb93a17877129aced9ea25334b7c5d5fd9ba0865dd47d6364c5" => :mojave
   end
 
   depends_on "gettext"
@@ -30,9 +29,6 @@ class Vim < Formula
     because: "vim and macvim both install vi* binaries"
 
   def install
-    # Fix error: '__declspec' attributes are not enabled
-    ENV.append_to_cflags "-fdeclspec"
-
     ENV.prepend_path "PATH", Formula["python@3.9"].opt_libexec/"bin"
 
     # https://github.com/Homebrew/homebrew-core/pull/1046
